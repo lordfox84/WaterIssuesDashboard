@@ -6,9 +6,11 @@ import time
 from threading import Thread
 
 app = Flask(__name__)
+data_cache = []
 
 # Funkce pro získání dat
 def fetch_data():
+    global data_cache
     url = 'https://www.pvk.cz/aktuality/havarie/#'
     response = requests.get(url)
     data = []
