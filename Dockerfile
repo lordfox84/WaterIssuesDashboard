@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 # Spustíme aplikaci (pokud je aplikace Flask)
-CMD ["python", "aapp/app.py"]
+CMD ["python", "app/app.py"]
