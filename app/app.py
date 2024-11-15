@@ -32,10 +32,8 @@ def fetch_data():
 # Funkce pro získání aktuálních dat a aktualizaci každou minutu
 @app.route('/')
 def index():
-    data = fetch_data()
-
-    if not data:
-        data = [{'message': 'Žádná data k zobrazení.'}]
+    data = data_cache if data_cache else [{'message': 'Žádná data k zobrazení.'}]
+    return render_template('index.html', data=data)
 
 
     return render_template('index.html', data=data)
@@ -45,6 +43,7 @@ def update_data():
     while True:
         time.sleep(60)  # Čekání 1 minutu
         print("Aktualizuji data...")
+        data_cache[:] = fetch_data()
         fetch_data()
 
 if __name__ == '__main__':
